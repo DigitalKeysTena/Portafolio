@@ -1,0 +1,26 @@
+/* Responsive menu*/
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--bg-light);
+    padding: 1.5rem 2rem;
+    border-top: 1px solid #334155;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

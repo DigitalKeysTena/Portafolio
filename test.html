@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menú Responsive Animado</title>
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --bg-light: #1e293b;
+      --accent: #38bdf8;
+      --text: #f8fafc;
+      --hover-bg: #1f2937;
+      --transition: 0.3s ease-in-out;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text);
+    }
+
+    nav {
+      background-color: var(--bg-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #334155;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      transition: var(--transition);
+    }
+
+    .nav-logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      position: relative;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      left: 0;
+      bottom: -5px;
+      background-color: var(--accent);
+      transition: width 0.4s ease-in-out;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 30px;
+      height: 24px;
+      cursor: pointer;
+      position: relative;
+      z-index: 1100;
+    }
+
+    .hamburger span {
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      background-color: var(--text);
+      border-radius: 2px;
+      transition: 0.4s;
+    }
+
+    .hamburger span:nth-child(1) {
+      top: 0;
+    }
+
+    .hamburger span:nth-child(2) {
+      top: 10px;
+    }
+
+    .hamburger span:nth-child(3) {
+      top: 20px;
+    }
+
+    .hamburger.open span:nth-child(1) {
+      transform: rotate(45deg);
+      top: 10px;
+    }
+
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg);
+      top: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-light);
+        flex-direction: column;
+        display: none;
+        padding: 1.5rem 2rem;
+        border-top: 1px solid #334155;
+        animation: fadeIn 0.3s ease-in-out;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">MiLogo</div>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="nav-links" id="nav-links">
+      <a href="#">Inicio</a>
+      <a href="#">Proyectos</a>
+      <a href="#">Sobre mí</a>
+      <a href="#">Contacto</a>
+    </div>
+  </nav>
+
+  <main style="padding: 2rem;">
+    <p>Haz clic en cualquier parte fuera del menú para cerrarlo.</p>
+  </main>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    // Alternar estado visual y funcional del menú
+    hamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navLinks.classList.toggle('active');
+      hamburger.classList.toggle('open'); // Añade clase para animar
+    });
+
+    // Cierre al hacer clic fuera
+    document.addEventListener('click', (e) => {
+      const clickOutside = !navLinks.contains(e.target) && !hamburger.contains(e.target);
+      if (clickOutside) {
+        navLinks.classList.remove('active');
+        hamburger.classList.remove('open'); // Quita clase para volver a hamburguesa
+      }
+    });
+
+    // Evita que se cierre si haces clic dentro del menú
+    navLinks.addEventListener('click', (e) => e.stopPropagation());
+  </script>
+
+</body>
+</html>
