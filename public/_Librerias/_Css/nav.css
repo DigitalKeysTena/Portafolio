@@ -11,18 +11,23 @@ nav {
   z-index: 1000;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   transition: var(--transition);
+  gap: 1rem;
 }
-
+/* ✅ Este contenedor empuja los links al centro */
 .nav-logo {
+  flex: 1;
   font-size: 1.6rem;
   font-weight: bold;
   color: var(--accent);
   letter-spacing: 1px;
 }
 
+/* ✅ Este permanece en el centro */
 .nav-links {
+  flex: 2;
   display: flex;
-  gap: 2rem;
+  justify-content: center;
+  gap: 1.5rem;
   align-items: center;
 }
 
@@ -52,24 +57,44 @@ nav {
 .nav-links a:hover::after {
   width: 100%;
 }
+/* ✅ Este va al extremo derecho */
+.nav-buttons {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
 
-    .nav-buttons a {
-      padding: 0.5rem 1rem;
-      border: 1px solid var(--accent);
-      border-radius: 999px;
-      color: #ffffff;
-      background: transparent;
-      font-size: 0.85rem;
-      transition: var(--transition);
-      box-shadow: 0 0 6px rgba(139, 92, 246, 0.4);
-      text-decoration: none;
-    }
+     .nav-buttons a {
+      width: 150px;
+    padding: 0.5rem 1.25rem;
+    margin: 5px;
+   border: 1px solid var(--accent);
+    border-radius: 999px;
+    color: #ffffff;
+    background-color: transparent;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: var(--transition);
+    box-shadow: 0 0 8px rgba(139, 92, 246, 0.3);
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+  }
+  
+  .nav-buttons a:hover {
+   
+    box-shadow: 0 0 12px rgba(139, 92, 246, 0.5);
+    transform: translateY(-1px);
+  }
+  
+  .nav-buttons a:active {
+    transform: translateY(0);
+    
 
-    .nav-buttons a:hover {
-      background-color: var(--accent);
-      color: #1e1b4b;
-      box-shadow: 0 0 12px rgba(139, 92, 246, 0.8);
-    }
+  }
+    
 
 /* Botón Hamburguesa */
 .hamburger {

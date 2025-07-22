@@ -1,12 +1,16 @@
 /* Responsive menu*/
 @media (max-width: 768px) {
+  .nav-buttons a::after {
+  background-color: transparent;
+  }
+
   .nav-links {
     display: none;
     flex-direction: column;
     position: absolute;
     top: 100%;
-    left: 0;
-    width: 100%;
+    right: 0;
+    width: 80%;
     background: var(--bg-light);
     padding: 1.5rem 2rem;
     border-top: 1px solid #334155;
@@ -16,6 +20,7 @@
   .nav-links.active {
     display: flex;
   }
+  
 
   .hamburger {
     display: flex;
