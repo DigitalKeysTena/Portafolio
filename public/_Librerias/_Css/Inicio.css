@@ -1,0 +1,14 @@
+#Inicio{
+    margin: 0;
+    padding: 5px;
+}
+h1 {
+    color: var(--text);
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+p {
+    color: var(--text);
+    font-size: 1.2rem;
+    line-height: 1.5;
+}

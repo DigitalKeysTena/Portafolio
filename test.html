@@ -1,31 +1,39 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Menú Responsive Animado</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Navbar MCBRAIN</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-dark: #0f172a;
-      --bg-light: #1e293b;
-      --accent: #38bdf8;
-      --text: #f8fafc;
-      --hover-bg: #1f2937;
-      --transition: 0.3s ease-in-out;
+      --bg-light: #0f172a;
+      --text: #cbd5e1;
+      --accent: #8b5cf6;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: var(--bg-dark);
+      font-family: 'Poppins', sans-serif;
+      background-color: #0f172a;
       color: var(--text);
     }
 
+    header {
+      position: relative;
+    }
+
     nav {
-      background-color: var(--bg-light);
+      background: var(--bg-light);
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       padding: 1rem 2rem;
       border-bottom: 1px solid #334155;
       position: sticky;
@@ -35,6 +43,28 @@
       transition: var(--transition);
     }
 
+    .nav-left,
+    .nav-center,
+    .nav-right {
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-left {
+      justify-content: flex-start;
+    }
+
+    .nav-center {
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .nav-right {
+      justify-content: flex-end;
+      gap: 1rem;
+    }
+
     .nav-logo {
       font-size: 1.6rem;
       font-weight: bold;
@@ -42,17 +72,11 @@
       letter-spacing: 1px;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-    }
-
     .nav-links a {
-      position: relative;
-      text-decoration: none;
       color: var(--text);
+      text-decoration: none;
       font-weight: 500;
+      position: relative;
       transition: var(--transition);
     }
 
@@ -75,38 +99,45 @@
       width: 100%;
     }
 
+    .nav-buttons a {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--accent);
+      border-radius: 999px;
+      color: #ffffff;
+      background: transparent;
+      font-size: 0.85rem;
+      transition: var(--transition);
+      box-shadow: 0 0 6px rgba(139, 92, 246, 0.4);
+      text-decoration: none;
+    }
+
+    .nav-buttons a:hover {
+      background-color: var(--accent);
+      color: #1e1b4b;
+      box-shadow: 0 0 12px rgba(139, 92, 246, 0.8);
+    }
+
     .hamburger {
       display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
       width: 30px;
       height: 24px;
-      cursor: pointer;
       position: relative;
+      cursor: pointer;
       z-index: 1100;
     }
 
     .hamburger span {
       position: absolute;
-      height: 3px;
       width: 100%;
-      background-color: var(--text);
+      height: 3px;
+      background: var(--text);
       border-radius: 2px;
       transition: 0.4s;
     }
 
-    .hamburger span:nth-child(1) {
-      top: 0;
-    }
-
-    .hamburger span:nth-child(2) {
-      top: 10px;
-    }
-
-    .hamburger span:nth-child(3) {
-      top: 20px;
-    }
+    .hamburger span:nth-child(1) { top: 0; }
+    .hamburger span:nth-child(2) { top: 10px; }
+    .hamburger span:nth-child(3) { top: 20px; }
 
     .hamburger.open span:nth-child(1) {
       transform: rotate(45deg);
@@ -122,27 +153,37 @@
       top: 10px;
     }
 
-    @media (max-width: 768px) {
-      .nav-links {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: var(--bg-light);
-        flex-direction: column;
-        display: none;
-        padding: 1.5rem 2rem;
-        border-top: 1px solid #334155;
-        animation: fadeIn 0.3s ease-in-out;
-      }
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      background: var(--bg-light);
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      padding: 1.5rem 0;
+      gap: 1.2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 0.4s ease-in-out;
+      z-index: 999;
+    }
 
-      .nav-links.active {
-        display: flex;
-      }
+    .mobile-menu a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
 
-      .hamburger {
-        display: flex;
-      }
+    .mobile-menu a:hover {
+      color: var(--accent);
+    }
+
+    .mobile-menu.active {
+      display: flex;
     }
 
     @keyframes fadeIn {
@@ -155,52 +196,67 @@
         transform: translateY(0);
       }
     }
+
+    @media (max-width: 768px) {
+      .nav-center,
+      .nav-right {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <nav>
-    <div class="nav-logo">MiLogo</div>
-    <div class="hamburger" id="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <div class="nav-links" id="nav-links">
-      <a href="#">Inicio</a>
-      <a href="#">Proyectos</a>
-      <a href="#">Sobre mí</a>
-      <a href="#">Contacto</a>
-    </div>
-  </nav>
+  <header>
+    <nav>
+      <div class="nav-left">
+        <div class="nav-logo">MCBRAIN</div>
+      </div>
 
-  <main style="padding: 2rem;">
-    <p>Haz clic en cualquier parte fuera del menú para cerrarlo.</p>
-  </main>
+      <div class="nav-center nav-links">
+        <a href="#">Features</a>
+        <a href="#">Pricing</a>
+        <a href="#">How to Use</a>
+        <a href="#">Roadmap</a>
+      </div>
+
+      <div class="nav-right nav-buttons">
+        <a href="#">New Account</a>
+        <a href="#">Sign In</a>
+      </div>
+
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Menú móvil -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#">Features</a>
+    <a href="#">Pricing</a>
+    <a href="#">How to Use</a>
+    <a href="#">Roadmap</a>
+    <a href="#">New Account</a>
+    <a href="#">Sign In</a>
+  </div>
 
   <script>
     const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('nav-links');
+    const mobileMenu = document.getElementById('mobileMenu');
 
-    // Alternar estado visual y funcional del menú
-    hamburger.addEventListener('click', (e) => {
-      e.stopPropagation();
-      navLinks.classList.toggle('active');
-      hamburger.classList.toggle('open'); // Añade clase para animar
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('active');
     });
-
-    // Cierre al hacer clic fuera
-    document.addEventListener('click', (e) => {
-      const clickOutside = !navLinks.contains(e.target) && !hamburger.contains(e.target);
-      if (clickOutside) {
-        navLinks.classList.remove('active');
-        hamburger.classList.remove('open'); // Quita clase para volver a hamburguesa
-      }
-    });
-
-    // Evita que se cierre si haces clic dentro del menú
-    navLinks.addEventListener('click', (e) => e.stopPropagation());
   </script>
-
 </body>
 </html>

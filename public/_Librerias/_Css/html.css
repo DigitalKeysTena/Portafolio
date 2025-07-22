@@ -1,0 +1,20 @@
+:root {
+  --bg-dark: #0f172a;
+  --bg-light: #1e293b;
+  --accent: #38bdf8;
+  --text: #f8fafc;
+  --hover-bg: #1f2937;
+  --transition: 0.3s ease-in-out;
+  --font-main: system-ui, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+   margin: 0;
+  padding: 0;
+}
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-dark);
+  color: var(--text);
+}
