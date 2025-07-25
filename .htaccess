@@ -3,4 +3,8 @@
   AddOutputFilterByType DEFLATE text/css application/javascript
   AddOutputFilterByType DEFLATE application/json
   AddOutputFilterByType DEFLATE application/xhtml+xml application/xml
+  AddOutputFilterByType DEFLATE text/css application/javascript
+   ExpiresActive On
+  ExpiresByType text/css "access plus 7 days"
+  ExpiresByType application/javascript "access plus 7 days"
 </IfModule>
