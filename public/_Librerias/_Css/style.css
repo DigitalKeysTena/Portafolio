@@ -1,0 +1,216 @@
+/* Variables CSS */
+:root {
+  --bg-dark: #0f172a;
+  --bg-light: #1e293b;
+  --accent: #38bdf8;
+  --text: #f8fafc;
+  --transition: 0.3s ease-in-out;
+  --font-main: system-ui, sans-serif;
+}
+
+/* Reset básico */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-dark);
+  color: var(--text);
+}
+
+/* Sección Inicio */
+#Inicio {
+  padding: 1rem;
+}
+
+#Inicio h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+#Inicio p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+/* Navegación */
+nav {
+  background: var(--bg-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #334155;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: var(--transition);
+}
+
+/* Logo */
+.nav-logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
+/* Links de navegación */
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: var(--transition);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent);
+  transition: width 0.4s ease-in-out;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Botones de navegación */
+.nav-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.nav-buttons a {
+  padding: 0.5rem 1.25rem;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  color: var(--text);
+  background-color: transparent;
+  font-weight: 500;
+  text-decoration: none;
+  text-align: center;
+  transition: var(--transition);
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.3);
+}
+
+.nav-buttons a:hover {
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
+  transform: translateY(-1px);
+}
+
+.nav-buttons a:active {
+  transform: translateY(0);
+}
+
+/* Menú hamburguesa */
+.hamburger {
+  display: none;
+  width: 30px;
+  height: 24px;
+  position: relative;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.hamburger span {
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: 0.4s;
+}
+
+.hamburger span:nth-child(1) { top: 0; }
+.hamburger span:nth-child(2) { top: 10px; }
+.hamburger span:nth-child(3) { top: 20px; }
+
+/* Animación del hamburger */
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg);
+  top: 10px;
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg);
+  top: 10px;
+}
+
+/* Animación de entrada */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  nav {
+    padding: 1rem;
+  }
+
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80vw;
+    height: 100vh;
+    background: var(--bg-light);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    animation: slideIn 0.3s ease-in-out;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-buttons {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  /* Botones en menú móvil */
+  .nav-links.active .nav-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+}
